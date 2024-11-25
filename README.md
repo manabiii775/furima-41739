@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
-- has_one :order
+- has_many :order
 
 ## products テーブル
 
@@ -77,7 +77,7 @@ Things you may want to cover:
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | postcode         | string     | null: false                    |
-| prefecture_id    | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
 | municipalities   | string     | null: false                    |
 | street_address   | string     | null: false                    |
 | telephone_number | string     | null: false                    |
