@@ -30,7 +30,7 @@ Things you may want to cover:
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
-| e-mail             | string | null: false, unique: true |
+| email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
@@ -38,19 +38,27 @@ Things you may want to cover:
 | first_name_kana    | string | null: false               |
 | date_of_birth      | date   | null: false               |
 
+### Association
+- has_many :products
+- has_many :orders
+
 ## products テーブル
 
-| Column                        | Type       | Options                        |
-| ----------------------------- | ---------- | ------------------------------ |
-| image                         | string     | null: false                    |
-| name                          | string     | null: false, unique: true      |
-| description                   | text       | null: false                    |
-| category                      | integer    | null: false                    |
-| status                        | integer    | null: false                    |
-| days_until_shipping           | integer    | null: false                    |
-| shipping_cost_responsibility  | integer    | null: false                    |
-| price                         | decimal    | null: false                    |
-| user                          | references | null: false, foreign_key: true |
+| Column                           | Type       | Options                        |
+| -------------------------------- | ---------- | ------------------------------ |
+| name                             | string     | null: false                    |
+| description                      | text       | null: false                    |
+| category_id                      | integer    | null: false                    |
+| status_id                        | integer    | null: false                    |
+| days_until_shipping_id           | integer    | null: false                    |
+| shipping_cost_responsibility_id  | integer    | null: false                    |
+| prefectures_id                   | integer    | null: false                    |
+| price                            | integer    | null: false                    |
+| user                             | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :users
+- belongs_to :addresse
 
 ## orders テーブル
 
@@ -59,13 +67,21 @@ Things you may want to cover:
 | user    | references | null: false, foreign_key: true |
 | product | references | null: false, foreign_key: true |
 
+### Association
+- belongs_to :users
+- belongs_to :products
+- belongs_to :addresses
+
 ## addresses テーブル
 
 | Column           | Type   | Options     |
 | ---------------- | ------ | ----------- |
 | postcode         | string | null: false |
-| prefectures      | string | null: false |
+| prefectures_id   | string | null: false |
 | municipalities   | string | null: false |
 | street_address   | string | null: false |
 | telephone_number | string | null: false |
-| Building _name   | string | null: true  |
+| building _name   | string |             |
+
+### Association
+- belongs_to :orders
