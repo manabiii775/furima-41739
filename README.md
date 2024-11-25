@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
-- has_many :orders
+- has_one :orders
 
 ## products テーブル
 
@@ -50,15 +50,15 @@ Things you may want to cover:
 | description                      | text       | null: false                    |
 | category_id                      | integer    | null: false                    |
 | status_id                        | integer    | null: false                    |
-| days_until_shipping_id           | integer    | null: false                    |
-| shipping_cost_responsibility_id  | integer    | null: false                    |
-| prefectures_id                   | integer    | null: false                    |
+| day_until_shipping_id            | integer    | null: false                    |
+| shipping_cost_id                 | integer    | null: false                    |
+| prefecture_id                    | integer    | null: false                    |
 | price                            | integer    | null: false                    |
 | user                             | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :addresse
+- belongs_to :user
+- has_one :order
 
 ## orders テーブル
 
@@ -68,20 +68,22 @@ Things you may want to cover:
 | product | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :products
-- belongs_to :addresses
+- belongs_to :user
+- belongs_to :product
+- has_one :address
 
 ## addresses テーブル
 
-| Column           | Type   | Options     |
-| ---------------- | ------ | ----------- |
-| postcode         | string | null: false |
-| prefectures_id   | string | null: false |
-| municipalities   | string | null: false |
-| street_address   | string | null: false |
-| telephone_number | string | null: false |
-| building _name   | string |             |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| postcode         | string     | null: false                    |
+| prefecture_id    | string     | null: false                    |
+| municipalities   | string     | null: false                    |
+| street_address   | string     | null: false                    |
+| telephone_number | string     | null: false                    |
+| building_name    | string     |                                |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :orders
+- belongs_to :product
+- belongs_to :order
