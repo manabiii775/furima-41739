@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
-- has_one :orders
+- has_one :order
 
 ## products テーブル
 
@@ -85,5 +85,4 @@ Things you may want to cover:
 | order            | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :product
 - belongs_to :order
