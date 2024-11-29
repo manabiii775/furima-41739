@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :products
+
+  def name
+    "#{nickname}"
+  end
   
   validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'パスワードは半角英字と半角数字の両方を含めて設定してください'}
   validates :nickname, presence: true
