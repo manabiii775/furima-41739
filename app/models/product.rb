@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   belongs_to :day_until_shipping
   belongs_to :shipping_cost
   belongs_to :prefecture
+  has_one    :order
 
   validates :name, presence: true
   validates :description, presence: true
