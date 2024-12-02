@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
   def correct_user
     @product = Product.find(params[:id])
     return if current_user == @product.user
-    redirect_to new_user_session_path
+    redirect_to root_path
   end
 
   def set_item
