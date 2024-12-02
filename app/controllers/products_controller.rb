@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :set_item, only: [:show, :edit, :update]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.order(created_at: :desc)
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to  root_path(@prototype)
+      redirect_to  root_path(@product)
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,6 +34,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product.destroy
+    redirect_to root_path
+  end
+
   private
 
   def product_params
@@ -49,6 +54,6 @@ class ProductsController < ApplicationController
   end
 
   def set_item
-    @products = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 end
