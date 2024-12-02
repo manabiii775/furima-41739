@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_item, only: [:show, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -20,15 +21,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @products = Product.find(params[:id])
   end
 
   def edit
-    @products = Product.find(params[:id])
   end
 
   def update
-    @products = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to product_path(@product)
     else
@@ -48,5 +46,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     return if current_user == @product.user
     redirect_to new_user_session_path
+  end
+
+  def set_item
+    @products = Product.find(params[:id])
   end
 end
