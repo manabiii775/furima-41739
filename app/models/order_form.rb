@@ -1,6 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :user_id, :product_id, :postcode, :prefecture_id, :municipalities, :street_address, :telephone_number, :building_name
+  attr_accessor :user_id, :product_id, :postcode, :prefecture_id, :municipalities, :street_address, :telephone_number, :building_name, :token
 
   with_options presence: true do
     validates :user_id
@@ -9,6 +9,7 @@ class OrderForm
     validates :municipalities
     validates :street_address
     validates :telephone_number, format: { with: /\A\d{10,11}\z/,message: "is invalid. Only half-width numbers are allowed."}
+    validates :token, presence: true
   end
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
