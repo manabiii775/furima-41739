@@ -19,6 +19,11 @@ RSpec.describe OrderForm, type: :model do
       end
     end
     context '商品が購入できないとき' do
+      it "tokenが空では登録できないこと" do
+        @order_form.token = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Token can't be blank")
+      end
       it 'postcodeが空だと購入できない' do
         @order_form.postcode = ''
         @order_form.valid?
