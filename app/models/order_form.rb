@@ -3,7 +3,7 @@ class OrderForm
   attr_accessor :user_id, :product_id, :postcode, :prefecture_id, :municipalities, :street_address, :telephone_number, :building_name, :token
 
   with_options presence: true do
-    validates :token, presence: true
+    validates :token
     validates :user_id
     validates :product_id
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
